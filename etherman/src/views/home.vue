@@ -5,15 +5,16 @@
         <div class="container">
             <div class="row mt-5">
                 <div class="col">
-                    <searching @getBalanceWallet="getBalance" />
+                    <searching @getBalanceWallet="getBalance" :loading="loading"/>
                 </div>
                 <div class="col">
-                    <metainfo />
+                    <metainfo :infoMeta="infoEther" :totalBalance="totalBalance" @changeCurrency="changeCurrency"/>
                 </div>
             </div>
-            <CryptoTable />
-            <nft />
-            <growth-analize />
+            <CryptoTable :infoTable="infoEther" />
+            <transactions :infoTransactions="allTransactions" />
+            <nft :infoNFT="infoEther" />
+            
             <Footer /> 
         </div>
     </div>
@@ -25,27 +26,69 @@ import Searching from '../components/Searching.vue'
 import Metainfo from '../components/Metainfo.vue'
 import CryptoTable from '../components/CryptoTable.vue'
 import Nft from '../components/Nft.vue'
-import GrowthAnalize from '../components/GrowthAnalize.vue'
 import Footer from '../components/Footer.vue'
 import axios from 'axios'
+import Transactions from '../components/Transactions.vue'
 
 export default {
-    components : { Navbar, Searching, Metainfo, CryptoTable, GrowthAnalize, Nft, Footer },
+    components : { Navbar, Searching, Metainfo, CryptoTable, Nft, Footer, Transactions },
     data() {
         return {
             apiKey : 'ckey_4e7ba38c8e50410a92ed0989d8f',
-            info : '',
-            chain_id : 1
+            infoEther : '',
+            infoMatic : '',
+            chain_id_et : 1,
+            chain_id_m : 137,
+            loading : false,
+            currency : "usd",
+            totalBalance : 0.00,
+            allTransactions : '',
+            wallet : ''
         }
     },
     methods : {
+        numberWithCommas(x) {
+                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            },
+        
+        getTotalBalance(info) {
+            this.totalBalance = 0.00
+            for(let i=0;i<info.items.length;i++) {
+                this.totalBalance = this.totalBalance + parseFloat(info.items[i].quote)
+            }
+            this.totalBalance = this.numberWithCommas(parseFloat(this.totalBalance).toFixed(2))         
+        },
         getBalance(wallet) {
-            console.log(wallet)
-            axios
-            .get(`https://api.covalenthq.com/v1/${this.chain_id}/address/${wallet}/balances_v2/`, { params : { key : this.apiKey, nft : true}})
-            .then(response => (this.info = response.data)) 
-            console.log(this.info)
-            
+            this.wallet = wallet
+            this.loading = true
+            let url1 = `https://api.covalenthq.com/v1/${this.chain_id_et}/address/${wallet}/balances_v2/`
+            axios.get(url1,{ params : {"quote-currency" : this.currency, key : this.apiKey, nft : true}})
+            .then(response => { 
+                this.infoEther = response.data.data,
+                this.getTotalBalance(this.infoEther),
+                this.getTransactions(wallet)
+            }).catch(error => {
+                console.log(error),
+                this.$swal({
+                    icon : 'error',
+                    title : 'Oops..',
+                    text : 'Something went wrong or Wallet Address or ENS Names Not Found'
+                })
+            })
+        },
+        getTransactions(wallet) {
+            let url = `https://api.covalenthq.com/v1/${this.chain_id_et}/address/${wallet}/transactions_v2/`;
+            axios.get(url, {params : {"quote-currency" : this.currency, key : this.apiKey, nft : true }})
+            .then(response => {
+                this.allTransactions = response.data.data
+            }).catch(error => {
+                console.log(error)
+            }).finally(() => this.loading = false)
+        },
+
+        changeCurrency(cur) {
+            this.currency = cur
+            this.getBalance(this.wallet)
         }
     }
     
