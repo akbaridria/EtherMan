@@ -2,9 +2,9 @@
   <center>
     <div class="card">
       <div class="card-body">
-        <h3 class="mb-4 mt-2">Ethereum Wallet Checker</h3>
+        <h3 class="mb-4 mt-2">Matic Wallet Checker</h3>
         <h5 class="card-title m-2">
-          Enter your Ethereum Address or ENS Names Here
+          Enter your Matic Address Wallet Here
         </h5>
         <form class="col-sm-8">
           <input

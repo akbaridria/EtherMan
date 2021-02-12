@@ -22,7 +22,6 @@
             <a class="nav-link" href="#">Matic Wallet Checker</a>
             <a class="nav-link" href="#">Uniswap V2</a>
             <a class="nav-link" href="#">Sushiswap V2</a>
-            <a class="nav-link" href="#">Aave V2</a>
             <a class="nav-link" href="#">Spot Price</a>
           </div>
         </div>

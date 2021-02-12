@@ -22,13 +22,13 @@
 
 <script>
 import Navbar from '../components/Navbar.vue'
-import Searching from '../components/Searching.vue'
-import Metainfo from '../components/Metainfo.vue'
-import CryptoTable from '../components/CryptoTable.vue'
-import Nft from '../components/Nft.vue'
-import Footer from '../components/Footer.vue'
+import Searching from '../components/matic/Searching.vue'
+import Metainfo from '../components/matic/Metainfo.vue'
+import CryptoTable from '../components/matic/CryptoTable.vue'
+import Nft from '../components/matic/Nft.vue'
+import Footer from '../components/matic/Footer.vue'
 import axios from 'axios'
-import Transactions from '../components/Transactions.vue'
+import Transactions from '../components/matic/Transactions.vue'
 
 export default {
     components : { Navbar, Searching, Metainfo, CryptoTable, Nft, Footer, Transactions },
@@ -37,7 +37,7 @@ export default {
             apiKey : 'ckey_4e7ba38c8e50410a92ed0989d8f',
             infoEther : '',
             infoMatic : '',
-            chain_id_et : 1,
+            chain_id_et : 137,
             chain_id_m : 137,
             loading : false,
             currency : "usd",
