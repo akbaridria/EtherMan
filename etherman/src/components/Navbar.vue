@@ -16,13 +16,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-link active" aria-current="page" href="#"
-              >Ethereum Wallet Checker</a
-            >
-            <a class="nav-link" href="#">Matic Wallet Checker</a>
-            <a class="nav-link" href="#">Uniswap V2</a>
-            <a class="nav-link" href="#">Sushiswap V2</a>
-            <a class="nav-link" href="#">Spot Price</a>
+            <router-link class="nav-link" :active="isActive" :to="{ name: 'ethereum'}">Ethereum Wallet Checker</router-link>
+            <router-link class="nav-link" :to="{ name: 'matic'}">Matic Wallet Checker</router-link>
+            <router-link class="nav-link" :to="{ name: 'uniswap'}">Uniswap V2 Assets</router-link>
+            <router-link class="nav-link" :to="{ name: 'sushiswap'}">Sushiswap</router-link>
+            <router-link class="nav-link" :to="{ name: 'spotprice'}">Spot Price</router-link>
           </div>
         </div>
       </div>
@@ -31,8 +29,15 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      isActive : ''
+    }
+  }
+};
 </script>
 
 <style scoped>
+
 </style>

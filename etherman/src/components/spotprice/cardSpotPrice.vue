@@ -6,7 +6,9 @@
         <p class="card-title">
           <em>Last Updated (update every minute)</em>
         </p>
-        <p class="mb-2">{{ updated_at }}</p>
+        <p>
+          {{ new Date(updated_at).toDateString() + ' ' + new Date(updated_at).toLocaleTimeString() }}
+        </p>
         <span class="mb-3">Change Currency</span><br />
         <div class="form-check form-check-inline">
           <input
@@ -47,22 +49,62 @@
       <table class="table">
         <thead class="table-light">
           <tr>
-            <td>No</td>
+            <td><strong>No</strong></td>
             <td></td>
-            <td>Contract Name</td>
-            <td>Ticker</td>
-            <td>Rank</td>
-            <td>Value</td>
+            <td><strong>Contract Address</strong></td>
+            <td><strong>Contract Name</strong></td>
+            <td><strong>Ticker</strong></td>
+            <td><strong>Market Cap Rank</strong></td>
+            <td><strong>Value</strong></td>
             <td></td>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody v-if="infoSpotPrice">
+            <tr v-for="(row, index) in infoSpotPrice.items" :key="row">
+                <td>{{ index + 1}}</td>
+                <td><img :src="row.logo_url" class="rounded" style="width:30px;height:30px" onerror="this.src='../defaultImg.png'" /></td>
+                <td>{{ row.contract_address }}</td>
+                <td>{{ row.contract_name }}</td>
+                <td>{{ row.contract_ticker_symbol }}</td>
+                <td>{{ row.rank }}</td>
+                <td>{{ currency === "usd" ? '$' : '' }}{{ currency === "eur" ? '€' : '' }}{{ currency === "jpy" ? '¥' : '' }}{{ numberWithCommas(parseFloat(row.quote_rate).toFixed(2)) }}</td>
+            </tr>
+        </tbody>
       </table>
     </div>
   </div>
 </template>
 <script>
-export default {};
+export default {
+    data() {
+      return {
+        currency : 'usd'
+      }
+    },
+    props : {
+        infoSpotPrice : {
+            type : Object
+        },
+        updated_at : {
+          type : String
+        }
+    },
+    methods : {
+      numberWithCommas(x) {
+                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+    },
+    watch : {
+      currency(){
+        this.$emit("changeCurrency", this.currency)
+      }
+
+    }
+};
 </script>
 <style scoped>
+td {
+  vertical-align: middle;
+  text-align: center;
+}
 </style>

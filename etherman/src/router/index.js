@@ -3,27 +3,27 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
     {
         path : '/',
-        name : 'Ethereum Wallet Checker',
+        name : 'ethereum',
         component : () => import("../views/home.vue")
     },
     {
         path : '/matic',
-        name : "Matic Wallet Checker",
+        name : "matic",
         component : () => import("../views/Matic.vue")
     },
     {
         path : '/uniswap',
-        name : "Uniswap V2 Assets",
+        name : "uniswap",
         component : () => import("../views/uniswap.vue")
     },
     {
         path : '/sushiswap',
-        name : "SushiSwap V2 Assets",
+        name : "sushiswap",
         component : () => import("../views/sushiSwap.vue")
     },
     {
         path : '/spotprice',
-        name : 'Spot Price',
+        name : 'spotprice',
         component : () => import("../views/spotPrice.vue")
     }
 ]
