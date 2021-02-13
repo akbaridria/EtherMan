@@ -107,4 +107,8 @@ td {
   vertical-align: middle;
   text-align: center;
 }
+.scrollable {
+  overflow-y: auto;
+  max-height: 10000px;
+}
 </style>

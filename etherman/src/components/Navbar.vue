@@ -16,7 +16,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <router-link class="nav-link" :active="isActive" :to="{ name: 'ethereum'}">Ethereum Wallet Checker</router-link>
+            <router-link class="nav-link" :to="{ name: 'ethereum'}">Ethereum Wallet Checker</router-link>
             <router-link class="nav-link" :to="{ name: 'matic'}">Matic Wallet Checker</router-link>
             <router-link class="nav-link" :to="{ name: 'uniswap'}">Uniswap V2 Assets</router-link>
             <router-link class="nav-link" :to="{ name: 'sushiswap'}">Sushiswap</router-link>

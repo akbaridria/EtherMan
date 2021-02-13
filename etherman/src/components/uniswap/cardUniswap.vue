@@ -1,6 +1,6 @@
 <template>
     <div class="card">
-      <div class="card-body">
+      <div class="card-body scrollable">
           <div class="container">
         <center>
         <img src="uniswap.png" style="width : 100px; height : 100px;" />
@@ -68,5 +68,9 @@ export default {
 td {
   vertical-align: middle;
   text-align: center;
+}
+.scrollable {
+  overflow-y: auto;
+  max-height: 10000px;
 }
 </style>

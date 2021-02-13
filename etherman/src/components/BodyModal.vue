@@ -40,10 +40,7 @@
           </td>
           <td>{{ row.transfers[0].transfer_type }}</td>
           <td>
-            {{ infoTransfer.quote_currency === "USD" ? "$" : ""
-            }}{{ infoTransfer.quote_currency === "EUR" ? "€" : ""
-            }}{{ infoTransfer.quote_currency === "JPY" ? "¥" : ""
-            }}{{
+            {{
               numberWithCommas(
                 (
                   row.transfers[0].delta /
@@ -53,7 +50,10 @@
             }}
           </td>
           <td>
-            {{
+            {{ infoTransfer.quote_currency === "USD" ? "$" : ""
+            }}{{ infoTransfer.quote_currency === "EUR" ? "€" : ""
+            }}{{ infoTransfer.quote_currency === "JPY" ? "¥" : ""
+            }}{{
               row.transfers[0].delta_quote !== null
                 ? numberWithCommas(row.transfers[0].delta_quote.toFixed(3))
                 : "-"
