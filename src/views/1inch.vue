@@ -15,9 +15,9 @@
 import Navbar from "../components/Navbar.vue"
 import Footer from "../components/Footer.vue"
 import card1inch from "../components/1inch/card1inch.vue"
-import axios from 'axios'
 
 export default {
+    components : { Navbar, Footer, card1inch }
 
 }
 </script>
