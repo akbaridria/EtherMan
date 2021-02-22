@@ -25,6 +25,11 @@ const routes = [
         path : '/spotprice',
         name : 'spotprice',
         component : () => import("../views/spotPrice.vue")
+    },
+    {
+        path : '/twitter-bot-1inch',
+        name : '1inch',
+        component : () => import("../views/1inch.vue")
     }
 ]
 

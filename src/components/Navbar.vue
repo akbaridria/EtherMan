@@ -21,6 +21,7 @@
             <router-link class="nav-link" :to="{ name: 'uniswap'}">Uniswap V2 Assets</router-link>
             <router-link class="nav-link" :to="{ name: 'sushiswap'}">Sushiswap</router-link>
             <router-link class="nav-link" :to="{ name: 'spotprice'}">Spot Price</router-link>
+            <router-link class="nav-link" :to="{ name: '1inch'}">Twitter Bot 1inch</router-link>
           </div>
         </div>
       </div>
